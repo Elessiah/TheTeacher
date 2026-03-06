@@ -49,7 +49,7 @@ client.on("messageCreate", async message => {
     const env: Env = await getEnvInstance();
     if (env.isInclude(message.author.id)) {
         const correction: string | null = await correctMessage(message.content);
-        if (correction) {
+        if (correction && correction != message.content) {
             await message.author.send({content: formatCorrection(message.content, correction)});
         }
     }
